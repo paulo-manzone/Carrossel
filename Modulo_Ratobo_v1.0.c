@@ -123,9 +123,9 @@ void f01(char comando[8]){
 	azul[0] = comando[6];
 	azul[1] = comando[7];
 	
-	r = atoi(vermelho)*85;
-	g = atoi(verde)*85;
-	b = atoi(blue)*85;
+	r = (vermelho[0]-'0' + 2* vermleho[1] - '0') * 85;
+	g = (verde[0]-'0' + 2* verde[1] - '0') * 85;
+	b = (azul[0]-'0' + 2* azul[1] - '0') * 85;
 	
 	analogWrite(RED, r);
 	analogWrite(GREEN, g);
