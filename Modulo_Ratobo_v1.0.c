@@ -97,13 +97,17 @@ void f00(char comando[8]){
 	dir[0] = comando[5];
 	dir[1] = comando[6];
 	dir[2] = comando[7];
-		
+	
+	int velE = (1*(esq[0]-'0')) + 2*(esq[1]-'0') + 4*(esq[2]-'0'))*17; // convertendo binario de tres bits para decimal 0 a 15 e fazendo correspondência a decimal de 0 a 255
+	int velD = (1*(dir[0]-'0')) + 2*(dir[1]-'0') + 4*(dir[2]-'0'))*17;
 
-	analogWrite(MOTORE, atoi(esq));
-	analogWrite(MOTORD, atoi(dir));
+	analogWrite(MOTORE, velE);
+	analogWrite(MOTORD, velD);
 	
 	//Controle do LED
-	
+	analogWrite(GREEN, 0);
+	analogWrite(RED, (velE+velD)/2);
+	analogWrite(BLUE, 255-(velE+velD)/2);
 }
 
 //função 01: Determina cor do LED
