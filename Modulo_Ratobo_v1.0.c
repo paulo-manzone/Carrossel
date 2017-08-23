@@ -66,6 +66,20 @@ void receberComando(){
 //função 00: Movimentação e Cor de Led automático (Conforme velocidade)
 void f00(char comando[8]){
 	//Movimentação
+	char esq[3], dir[3];
+	
+	esq[0] = comando[2];
+	esq[1] = comando[3];
+	esq[2] = comando[4];
+	dir[0] = comando[5];
+	dir[1] = comando[6];
+	dir[2] = comando[7];
+		
+	analogWrite(PINO5, atoi(esq));
+	analogWrite(PINO6, atoi(dir));
+	
+	//Controle do LED
+	
 	
 }
 
@@ -81,8 +95,8 @@ void f10(char comando[8]){
 
 //função 11: Modo de exibição (Roda loucamente e pisca)
 void f11(char comando[8]){
-	digitalWrite(PIN5, HIGH);
-	digitalWrite(PIN6,LOW);
+	digitalWrite(PINO5, HIGH);
+	digitalWrite(PINO6,LOW);
 }
 
 
