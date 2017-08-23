@@ -20,14 +20,19 @@ void setup(){
 	int RED = 9;
 	int BLUE = 10;
 	int GREEN = 11;
+	int TENSAO25 = 3;
 	
 	//Definindo pinos como entrada ou saída
 	pinMode(ENTRADA, INPUT);  //Entrada serial através 
 	pinMode(MOTORE, OUTPUT); //Controle do motor Esquerdo
 	pinMode(MOTORD, OUTPUT); //Controle do motor Direito
+	pinMode(TENSAO25, OUTPUT); // Tensão 2.5V para uso no motor (como auxiliar, podendo assim rotacionar para ambos os lados com 0~5V do MOTORE E MOTORD)
 	pinMode(RED, OUTPUT); //Led Vermelho
 	pinMode(GREEN, OUTPUT); //Led Verde
 	pinMode(BLUE, OUTPUT); //Led Azul
+	
+	analogwrite(TENSAO25, 127); // Colocando 2.5V no pino 3;
+	
 	system("cls");
 	printf("\nSistema Ratobô Carrossel v1.0 inicializado!\n");
 	
@@ -64,7 +69,16 @@ void receberComando(){
 	
 	//Determinando função recebida
 	if(comando[0] == 0 && comando[1] == 0){
-		modo0(comando);
+		f00(comando);
+	}else
+		if(comando[0] == 0 && comando[1] == 1){
+		f01(comando);
+	}else
+		if(comando[0] == 1 && comando[1] == 0){
+		f10(comando);
+	}else
+		if(comando[0] == 1 && comando[1] == 1){
+		f11(comando);
 	}
 	
 		
@@ -84,6 +98,7 @@ void f00(char comando[8]){
 	dir[1] = comando[6];
 	dir[2] = comando[7];
 		
+
 	analogWrite(MOTORE, atoi(esq));
 	analogWrite(MOTORD, atoi(dir));
 	
@@ -124,6 +139,7 @@ MOTOR ESQUERDO: PINO 5
 LED VERMELHO: PINO 9
 LED AZUL: PINO 10
 LED VERDE: PINO 11
+POLO AUXILIAR DO MOTOR: PINO 3
 
 
 
