@@ -15,9 +15,9 @@ void setup(){
 	int PINO1=1,PINO5=5, PINO6=6;
 	
 	//Definindo pinos como entrada ou saída
-	pinMode (PIN1, INPUT);  //Entrada serial através 
-	pinMode (PIN5, OUTPUT); //Controle do motor Esquerdo
-	pinMode (PIN6, OUTPUT); //Controle do motor Direito
+	pinMode (PINO1, INPUT);  //Entrada serial através 
+	pinMode (PINO5, OUTPUT); //Controle do motor Esquerdo
+	pinMode (PINO6, OUTPUT); //Controle do motor Direito
 	
 	system("cls");
 	printf("\nSistema Ratobô Carrossel v1.0 inicializado!\n");
@@ -65,7 +65,8 @@ void receberComando(){
 
 //função 00: Movimentação e Cor de Led automático (Conforme velocidade)
 void f00(char comando[8]){
-	printf("Implementar");
+	//Movimentação
+	
 }
 
 //função 01: Determina cor do LED
@@ -80,7 +81,8 @@ void f10(char comando[8]){
 
 //função 11: Modo de exibição (Roda loucamente e pisca)
 void f11(char comando[8]){
-	printf("Implementar");
+	digitalWrite(PIN5, HIGH);
+	digitalWrite(PIN6,LOW);
 }
 
 
