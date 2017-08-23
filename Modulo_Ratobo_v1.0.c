@@ -136,7 +136,23 @@ void f01(char comando[8]){
 
 //função 10: Movimentaçao sem mudar cor do Led
 void f10(char comando[8]){
-	printf("Implementar");
+	//Movimentação
+	char esq[3], dir[3];
+	
+	esq[0] = comando[2];
+	esq[1] = comando[3];
+	esq[2] = comando[4];
+	dir[0] = comando[5];
+	dir[1] = comando[6];
+	dir[2] = comando[7];
+	
+	int velE = (1*(esq[0]-'0')) + 2*(esq[1]-'0') + 4*(esq[2]-'0'))*17; // convertendo binario de tres bits para decimal 0 a 15 e fazendo correspondência a decimal de 0 a 255
+	int velD = (1*(dir[0]-'0')) + 2*(dir[1]-'0') + 4*(dir[2]-'0'))*17;
+
+	//Valores menores que 127 rodam num sentido, enquanto maiores rodam em outro sentido
+	analogWrite(MOTORE, velE);
+	analogWrite(MOTORD, velD);
+	
 }
 
 //função 11: Modo de exibição (Roda loucamente e pisca)
