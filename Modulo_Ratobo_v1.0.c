@@ -45,7 +45,7 @@ void setup(){
 //================================================================================================
 
 void loop{
-	
+	receberComando();
 
 }
 
@@ -183,7 +183,16 @@ POLO AUXILIAR DO MOTOR: PINO 3
 
 
 
-
+=======================================================================================================================================================================
+ 			Carrossel Caipira - Time de Róbitica - Unesp Bauru - Grupo de Pesquisa - 2017
+ 			Feito como parte integrante do projeto de pesquisa Ratobô
+ 			Integrantes:
+ 				Izabele Pizzo
+ 				Jorge
+ 				Luis Fernando Uzai
+ 				Marcelo Hideaki Iwata Kito
+ 				Paulo Eduardo Manzone Maia
+=========================================================================================================================================================================
 
 
 */
