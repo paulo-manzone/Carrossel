@@ -9,16 +9,25 @@
 //						SETUP
 //=========================================================
 
+
+
+
+
 void setup(){
 	//Declarando variaveis e associando-as a um pino
 	
-	int PINO1=1,PINO5=5, PINO6=6;
+	int ENTRADA=1,MOTORE=5, MOTORD=6;
+	int RED = 9;
+	int BLUE = 10;
+	int GREEN = 11;
 	
 	//Definindo pinos como entrada ou saída
-	pinMode (PINO1, INPUT);  //Entrada serial através 
-	pinMode (PINO5, OUTPUT); //Controle do motor Esquerdo
-	pinMode (PINO6, OUTPUT); //Controle do motor Direito
-	
+	pinMode(ENTRADA, INPUT);  //Entrada serial através 
+	pinMode(MOTORE, OUTPUT); //Controle do motor Esquerdo
+	pinMode(MOTORD, OUTPUT); //Controle do motor Direito
+	pinMode(RED, OUTPUT); //Led Vermelho
+	pinMode(GREEN, OUTPUT); //Led Verde
+	pinMode(BLUE, OUTPUT); //Led Azul
 	system("cls");
 	printf("\nSistema Ratobô Carrossel v1.0 inicializado!\n");
 	
@@ -75,11 +84,10 @@ void f00(char comando[8]){
 	dir[1] = comando[6];
 	dir[2] = comando[7];
 		
-	analogWrite(PINO5, atoi(esq));
-	analogWrite(PINO6, atoi(dir));
+	analogWrite(MOTORE, atoi(esq));
+	analogWrite(MOTORD, atoi(dir));
 	
 	//Controle do LED
-	
 	
 }
 
@@ -95,8 +103,8 @@ void f10(char comando[8]){
 
 //função 11: Modo de exibição (Roda loucamente e pisca)
 void f11(char comando[8]){
-	digitalWrite(PINO5, HIGH);
-	digitalWrite(PINO6,LOW);
+	digitalWrite(MOTORD, HIGH);
+	digitalWrite(MOTORE,LOW);
 }
 
 
@@ -108,8 +116,14 @@ void f11(char comando[8]){
 //=========================================================
 
 /*
+Conexões:
 
-
+BLUETOOTH : PINO 1
+MOTOR DIREITO: PINO 6
+MOTOR ESQUERDO: PINO 5
+LED VERMELHO: PINO 9
+LED AZUL: PINO 10
+LED VERDE: PINO 11
 
 
 
