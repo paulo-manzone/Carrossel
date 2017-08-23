@@ -5,9 +5,9 @@
 
 
 
-//=========================================================
+//===============================================================================================
 //						SETUP
-//=========================================================
+//===============================================================================================
 
 
 
@@ -40,9 +40,9 @@ void setup(){
 
 
 
-//=========================================================
+//================================================================================================
 //						LOOP
-//=========================================================
+//================================================================================================
 
 void loop{
 	
@@ -51,9 +51,9 @@ void loop{
 
 
 
-//=========================================================
+//=================================================================================================
 //						FUNÇÕES
-//=========================================================
+//=================================================================================================
 
 //Chamado toda vez - determina qual função deve ser chamada segundo o byte recebido via bluetooth
 void receberComando(){
@@ -101,18 +101,37 @@ void f00(char comando[8]){
 	int velE = (1*(esq[0]-'0')) + 2*(esq[1]-'0') + 4*(esq[2]-'0'))*17; // convertendo binario de tres bits para decimal 0 a 15 e fazendo correspondência a decimal de 0 a 255
 	int velD = (1*(dir[0]-'0')) + 2*(dir[1]-'0') + 4*(dir[2]-'0'))*17;
 
+	//Valores menores que 127 rodam num sentido, enquanto maiores rodam em outro sentido
 	analogWrite(MOTORE, velE);
 	analogWrite(MOTORD, velD);
 	
-	//Controle do LED
-	analogWrite(GREEN, 0);
-	analogWrite(RED, (velE+velD)/2);
-	analogWrite(BLUE, 255-(velE+velD)/2);
+	//Controle do LED								Variando com a velocidade de Azul até Vermelhor
+	analogWrite(GREEN, 0);									//Verde sempre 0
+	analogWrite(RED, abs((velE+velD)/2-127)*2);				//Vermelho sobe com a velocidade média dos motores
+	analogWrite(BLUE, abs(127-(velE+velD)/2)*2);			//Azul diminui com a velocidade média dos motores
 }
 
 //função 01: Determina cor do LED
 void f01(char comando[8]){
-	printf("Implementar");
+	int r, g, b;
+	char vermelho[2], verde[2], azul[2];
+	
+	vermelho[0] = comando[2]; 
+	vermelho[1] = comando[3];
+	verde[0] = comando[4];
+	verde[1] = comando[5];
+	azul[0] = comando[6];
+	azul[1] = comando[7];
+	
+	r = atoi(vermelho)*85;
+	g = atoi(verde)*85;
+	b = atoi(blue)*85;
+	
+	analogWrite(RED, r);
+	analogWrite(GREEN, g);
+	analogWrite(BLUE, b);
+	
+	
 }
 
 //função 10: Movimentaçao sem mudar cor do Led
